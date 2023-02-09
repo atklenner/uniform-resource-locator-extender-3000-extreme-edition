@@ -6,8 +6,16 @@ const db = {
   "abcd": "https://expressjs.com/"
 };
 
+app.use(express.static("public"));
+app.use(express.urlencoded("extended"));
+
 app.get("/", (_req, res) => {
-  res.send("pong");
+  res.send("./form.html");
+})
+
+app.post("/extend", (req, res) => {
+  console.log(req.body);
+  res.redirect("/");
 })
 
 app.get("/:stuff", (req, res) => {
