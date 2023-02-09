@@ -15,9 +15,11 @@ app.get("/", (_req, res) => {
 })
 
 app.post("/extend", (req, res) => {
+  console.log(req.body.url);
+  console.log(req.body.text);
   let id = nanoid(10);
   db[id] = req.body.url;
-  console.log(db[id]);
+  console.log(`${req.body.url}/${req.body.text}?id=${id}`);
   res.json(id);
 })
 
