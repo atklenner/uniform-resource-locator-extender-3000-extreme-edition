@@ -16,7 +16,7 @@ form.addEventListener("submit", async (e) => {
     })
     id = await res.json();
   }
-  const extendedURL = `localhost:3000/${filterText(text.value)}/?id=${id}`;
+  const extendedURL = `${window.location.href}${filterText(text.value)}/?id=${id}`;
   link.textContent = extendedURL;
   link.href = extendedURL;
   code.textContent = extendedURL;
