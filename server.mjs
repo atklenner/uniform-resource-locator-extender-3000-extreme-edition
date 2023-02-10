@@ -1,6 +1,8 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 import { nanoid } from "nanoid";
 
 const db = {
@@ -19,7 +21,7 @@ app.post("/extend", (req, res) => {
   console.log(req.body.text);
   let id = nanoid(10);
   db[id] = req.body.url;
-  console.log(`${req.body.url}/${req.body.text}?id=${id}`);
+  console.log(`${process.env.HOST_NAME}/${req.body.text}?id=${id}`);
   res.json(id);
 })
 
