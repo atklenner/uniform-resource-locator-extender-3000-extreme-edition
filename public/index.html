@@ -4,24 +4,31 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
   <title>URL Extender</title>
 </head>
 <body>
-  <form action="/extend" method="post">
-    <div>
-      <label>URL<input class="url-input" name="url" type="text"/></label>
-    </div>
-    <div>
-      <label>Custom Text
-        <textarea name="text" rows="5" cols="100"></textarea>
-      </label>
-    </div>
-    <button>Extend</button>
-    <a href="#" target="_blank"></a>
-    <pre>
+  <main>
+    <section>
+      <form action="/extend" method="post">
+        <div>
+          <label>URL<input class="url-input" name="url" type="text"/></label>
+        </div>
+        <div>
+          <label>Custom Text
+            <textarea name="text" rows="5" cols="100"></textarea>
+          </label>
+        </div>
+        <button>Extend</button>
+      </form>
+    </section>
+    <section>
+      <a href="#" target="_blank"></a>
+      <pre>
       <code></code>
-    </pre>
-  </form>
+      </pre>
+    </section>
+  </main>
   <script src="./main.js" type="module"></script>
 </body>
 </html>
