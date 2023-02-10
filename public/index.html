@@ -17,26 +17,13 @@
       </label>
     </div>
     <button>Extend</button>
-    <a href="#" target="_blank"></a>
+    <a href="#"></a>
+    <pre>
+      <code>
+        
+      </code>
+    </pre>
   </form>
-  <script>
-    const form = document.querySelector("form");
-    const urlInput = document.querySelector(".url-input");
-    const text = document.querySelector("textarea");
-    const link = document.querySelector("a");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      let res = await fetch("/extend", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: urlInput.value })
-      })
-      const id = await res.json();
-      link.textContent = `localhost:3000/${text.value}?id=${id}`;
-      link.href = `localhost:3000/${text.value}?id=${id}`;
-    })
-  </script>
+  <script src="./main.js" type="module"></script>
 </body>
 </html>
