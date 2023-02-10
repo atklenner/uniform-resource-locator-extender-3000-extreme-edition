@@ -9,7 +9,7 @@
 <body>
   <form action="/extend" method="post">
     <div>
-      <label>URL<input name="url" type="text"/></label>
+      <label>URL<input class="url-input" name="url" type="text"/></label>
     </div>
     <div>
       <label>Custom Text
@@ -17,6 +17,26 @@
       </label>
     </div>
     <button>Extend</button>
+    <a href="#" target="_blank"></a>
   </form>
+  <script>
+    const form = document.querySelector("form");
+    const urlInput = document.querySelector(".url-input");
+    const text = document.querySelector("textarea");
+    const link = document.querySelector("a");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      let res = await fetch("/extend", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: urlInput.value })
+      })
+      const id = await res.json();
+      link.textContent = `localhost:3000/${text.value}?id=${id}`;
+      link.href = `localhost:3000/${text.value}?id=${id}`;
+    })
+  </script>
 </body>
 </html>
