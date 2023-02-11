@@ -4,28 +4,35 @@ import express from "express";
 const app = express();
 const PORT = process.env.PORT;
 import { nanoid } from "nanoid";
+import CyclicDb from "@cyclic.sh/dynamodb";
+const db = CyclicDb("mysterious-cyan-long-johnsCyclicDB");
 
-const db = {
-  "abcd": "https://expressjs.com/"
-};
+import morgan from "morgan";
+
+const links = db.collection("links");
 
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(morgan("tiny"));
+
 app.get("/", (_req, res) => {
   res.send("./form.html");
 })
 
-app.post("/extend", (req, res) => {
-  let id = nanoid(10);
-  db[id] = req.body.url;
-  res.json(id);
+app.post("/extend", async (req, res) => {
+  let link = {
+    id: nanoid(),
+    url: req.body.url,
+  };
+  await links.set(link.id, link);
+  res.json(link.id);
 })
 
-app.get("*", (req, res) => {
-  const url = db[req.query.id];
-  res.redirect(url);
+app.get("*", async (req, res) => {
+  const { props } = await links.get(req.query.id);
+  res.redirect(props.url);
 })
 
 app.listen(PORT, () => {
