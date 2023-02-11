@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 import CyclicDb from "@cyclic.sh/dynamodb";
 const db = CyclicDb("mysterious-cyan-long-johnsCyclicDB");
 
-import morgan from "morgan";
+// import morgan from "morgan";
 
 const links = db.collection("links");
 
@@ -15,7 +15,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(morgan("tiny"));
+// app.use(morgan("tiny"));
 
 app.get("/", (_req, res) => {
   res.send("./form.html");
