@@ -2,7 +2,6 @@ const form = document.querySelector("form");
 const urlInput = document.querySelector(".url-input");
 const text = document.querySelector("textarea");
 const link = document.querySelector("a");
-const code = document.querySelector("code");
 let id;
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -16,12 +15,21 @@ form.addEventListener("submit", async (e) => {
     })
     id = await res.json();
   }
-  const extendedURL = `${window.location.href}${filterText(text.value)}/?id=${id}`;
+  let href = window.location.href;
+  let urlId = `/?id=${id}`;
+  let urlText = truncateText(href, filterText(text.value), urlId);
+  const extendedURL = `${href}${urlText}${urlId}`;
   link.textContent = extendedURL;
   link.href = extendedURL;
-  code.textContent = extendedURL;
 })
 
 function filterText(str) {
-  return str.replace(/[{}|\\\^\[\]`;\/\?:@&=+$\,.]/g, "").replaceAll(" ", "-");
+  // removes any reserved chars for URLs, replaces spaces with hyphens
+  return str.replace(/[{}|\\\^\[\]`;\/\?:@&=+$\,.\n]/g, "").replaceAll(" ", "-");
+}
+
+function truncateText(href, text, id) {
+  // 2000 is a good limit for URL length, it's long and should always work
+  const limit = 2000 - href.length - id.length;
+  return text.slice(0, limit);
 }
