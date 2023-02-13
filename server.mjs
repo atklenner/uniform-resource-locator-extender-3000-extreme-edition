@@ -22,17 +22,27 @@ app.get("/", (_req, res) => {
 })
 
 app.post("/extend", async (req, res) => {
-  let link = {
-    id: nanoid(),
-    url: req.body.url,
-  };
-  await links.set(link.id, link);
-  res.json(link.id);
+  try {
+    let link = {
+      id: nanoid(),
+      url: req.body.url,
+    };
+    await links.set(link.id, link);
+    res.json(link.id);
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
 })
 
 app.get("*", async (req, res) => {
-  const { props } = await links.get(req.query.id);
-  res.redirect(props.url);
+  try {
+    const { props } = await links.get(req.query.id);
+    res.redirect(props.url);
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
 })
 
 app.listen(PORT, () => {
