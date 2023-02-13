@@ -25,7 +25,7 @@ form.addEventListener("submit", async (e) => {
 
 function filterText(str) {
   // removes any reserved chars for URLs, replaces spaces with hyphens
-  return str.replace(/[{}|\\\^\[\]`;\/\?:@&=+$\,.\n]/g, "").replaceAll(" ", "-");
+  return str.replace(/[{}|\\\^\[\]`;\/\?:@&=+$\,.]/g, "").replace(/[ \n]/g, "-");
 }
 
 function truncateText(href, text, id) {
