@@ -9,6 +9,14 @@
     pre {
       white-space: normal;
     }
+    ul {
+      padding-left: 0;
+      margin-top: 5px;
+    }
+    li {
+      display: inline-block;
+      margin-right: 0.25rem;
+    }
   </style>
   <title>URL Extender</title>
 </head>
@@ -18,13 +26,29 @@
       <h1>Uniform Resource Locator Extender 3000 Extreme Edition</h1>
       <form action="/extend" method="post">
         <div>
-          <label>URL<input class="url-input" name="url" type="text"/></label>
+          <label>URL<input class="url-input" name="url" type="url" required/></label>
         </div>
         <div>
           <label>Custom Text
-            <textarea name="text" rows="5" cols="100"></textarea>
+            <textarea name="text" rows="5" cols="100" required></textarea>
           </label>
         </div>
+        <label>Custom Text Examples
+          <ul>
+            <li>
+              <input id="melville" type="button" value="Moby Dick">
+            </li>
+            <li>
+              <input id="lorem" type="button" value="Lorem Ipsum">
+            </li>
+            <li>
+              <input id="binary" type="button" value="Binary">
+            </li>
+            <li>
+              <input id="alpha" type="button" value="Alphanumeric">
+            </li>
+          </ul>
+        </label>
         <button>Extend</button>
       </form>
     </section>
