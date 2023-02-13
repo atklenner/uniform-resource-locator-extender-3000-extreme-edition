@@ -24,16 +24,37 @@
   <main>
     <section>
       <h1>Uniform Resource Locator Extender 3000 Extreme Edition</h1>
+      <p>
+        Provide a URL you want to make really long and some text that will 
+        show up in the long URL.
+      </p>
+      <p>
+        Great for annoying your group chat, Slack, Discord, or Twitch chat.
+      </p>
       <form action="/extend" method="post">
         <div>
-          <label>URL<input class="url-input" name="url" type="url" required/></label>
-        </div>
-        <div>
-          <label>Custom Text
-            <textarea name="text" rows="5" cols="100" required></textarea>
+          <label>URL
+            <input 
+              class="url-input" 
+              name="url" 
+              type="url" 
+              placeholder="https://www.example.com/"
+              required 
+            />
           </label>
         </div>
-        <label>Custom Text Examples
+        <div>
+          <label>Text
+            <textarea 
+              name="text" 
+              rows="5" 
+              cols="100" 
+              placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing..."
+              required
+            ></textarea>
+          </label>
+        </div>
+        <label>Text Examples
           <ul>
             <li>
               <input id="melville" type="button" value="Moby Dick">
