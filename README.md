@@ -7,7 +7,7 @@ This is whatever the opposite of a URL shortener is.
 
 ## How It's Made:
 
-**Tech used:** HTML, Pure.CSS, JavaScript, Node, Express
+**Tech used:** HTML, Pico.CSS, JavaScript, Node, Express
 
 
 
