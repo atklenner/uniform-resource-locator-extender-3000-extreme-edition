@@ -3,7 +3,7 @@ This is whatever the opposite of a URL shortener is.
 
 **Link to project:** https://uniform-resource-locator-extender.cyclic.app/
 
-![alt tag](http://placecorgi.com/1200/650)
+![URL Extender demo](https://github.com/atklenner/atklenner/blob/main/images/extender-recording.gif)
 
 ## How It's Made:
 
