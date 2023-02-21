@@ -7,23 +7,26 @@ const loremButton = document.querySelector("#lorem")
 const binaryButton = document.querySelector("#binary");
 const alphaButton = document.querySelector("#alpha");
 const alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
-let id;
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  if (!id) {
-    let res = await fetch("/extend", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ url: urlInput.value })
-    })
-    id = await res.json();
-  }
-  let href = window.location.href;
+  let res = await fetch("/extend", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ url: urlInput.value })
+  })
+
+  // get id from server
+  let id = await res.json();
   let urlId = `/?id=${id}`;
+
+  let href = window.location.href;
+
+  // limit text to 2000 characters for browser compatibility
   let urlText = truncateText(href, filterText(text.value), urlId);
+
   const extendedURL = `${href}${urlText}${urlId}`;
   link.textContent = extendedURL;
   link.href = extendedURL;
